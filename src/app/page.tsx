@@ -9,4 +9,9 @@ export default function Home() {
     <div className="flex flex-col">
       <Hero />
       <HowItWorks />
-      <
+      <Benefits />
+      <Testimonials />
+      <Faq />
+    </div>
+  );
+}
