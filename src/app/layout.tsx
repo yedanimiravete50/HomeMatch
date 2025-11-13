@@ -5,6 +5,7 @@ import { Header } from '@/components/layout/header';
 import { Toaster } from '@/components/ui/toaster';
 import { AppSidebar } from '@/components/layout/app-sidebar';
 import { SidebarProvider, SidebarInset } from '@/components/ui/sidebar';
+import { BottomNav } from '@/components/layout/bottom-nav';
 
 export const metadata: Metadata = {
   title: 'HomeMatch Hub',
@@ -36,11 +37,12 @@ export default function RootLayout({
           <SidebarProvider>
             <AppSidebar />
             <SidebarInset>
-              <div className="flex min-h-screen flex-col">
+              <div className="flex min-h-screen flex-col pb-16 md:pb-0">
                 <Header />
                 <main className="flex-grow">{children}</main>
               </div>
               <Toaster />
+              <BottomNav />
             </SidebarInset>
           </SidebarProvider>
         </ThemeProvider>

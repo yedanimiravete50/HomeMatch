@@ -43,7 +43,7 @@ export function AppSidebar() {
   ];
 
   return (
-    <Sidebar>
+    <Sidebar collapsible="icon">
       <SidebarHeader>
         <div className="flex items-center justify-center group-data-[collapsible=icon]:justify-center">
           <Link
