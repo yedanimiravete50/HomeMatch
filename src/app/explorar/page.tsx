@@ -1,3 +1,4 @@
+
 import { properties } from '@/lib/data';
 import { PropertyCard } from '@/components/property-card';
 import {
@@ -9,7 +10,7 @@ import {
 } from '@/components/ui/select';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { Map, SlidersHorizontal } from 'lucide-react';
+import { Map, SlidersHorizontal, Search } from 'lucide-react';
 import { Card } from '@/components/ui/card';
 import Image from 'next/image';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
@@ -49,8 +50,8 @@ export default function ExplorePage() {
       </header>
 
       <Card className="p-4 mb-8 rounded-2xl shadow-sm">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-          <Input placeholder="Ciudad, barrio..." />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1fr_auto_auto] xl:grid-cols-[2fr_1fr_1fr_auto_auto] gap-4 items-center">
+          <Input placeholder="Ciudad, barrio, dirección..." className="sm:col-span-2 lg:col-span-1 xl:col-span-1" />
           <Select>
             <SelectTrigger>
               <SelectValue placeholder="Tipo de habitación" />
@@ -71,11 +72,14 @@ export default function ExplorePage() {
               <SelectItem value="3">&gt; 600€</SelectItem>
             </SelectContent>
           </Select>
-          <Button variant="outline" className="lg:col-span-1">
+          <Button variant="outline" className="hidden xl:flex">
             <SlidersHorizontal className="mr-2 h-4 w-4" />
             Más filtros
           </Button>
-          <Button className="lg:col-span-1">Buscar</Button>
+          <Button className="w-full sm:col-span-2 lg:col-span-3 xl:col-span-1">
+            <Search className="mr-2 h-4 w-4" />
+            Buscar
+          </Button>
         </div>
       </Card>
 

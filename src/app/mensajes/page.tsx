@@ -4,11 +4,12 @@
 import { useState } from 'react';
 import { users } from '@/lib/data';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { Search, Send, Smile, MessageSquare } from 'lucide-react';
+import { Search, Send, Smile, MessageSquare, ArrowLeft } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 const conversations = [
   {
@@ -41,62 +42,74 @@ export default function MessagesPage() {
   if (!currentUser) return null;
 
   return (
-    <div className="h-[calc(100vh-theme(height.14))] flex">
+    <div className="h-[calc(100vh-theme(height.14))] flex overflow-hidden">
       {/* Sidebar de conversaciones */}
-      <Card className="w-1/3 min-w-[300px] max-w-[400px] flex flex-col h-full rounded-none border-t-0 border-l-0 border-b-0">
-        <CardHeader className="p-4">
-            <CardTitle className='text-2xl'>Chats</CardTitle>
-            <div className="relative mt-2">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-                <Input placeholder="Buscar en chats..." className="pl-10" />
-            </div>
-        </CardHeader>
-        <ScrollArea className="flex-grow">
-          <div className="p-2">
-            {conversations.map((conv) => {
-              const user = users.find((u) => u.id === conv.userId);
-              if (!user) return null;
-              const isActive = selectedConversation.userId === conv.userId;
+      <aside
+        className={cn(
+          'w-full md:w-1/3 md:min-w-[300px] md:max-w-[400px] flex flex-col h-full border-r transition-transform duration-300 ease-in-out',
+          selectedConversation ? '-translate-x-full md:translate-x-0' : 'translate-x-0'
+        )}
+      >
+        <Card className='h-full rounded-none border-t-0 border-l-0 border-b-0 flex flex-col'>
+          <CardHeader className="p-4">
+              <CardTitle className='text-2xl'>Chats</CardTitle>
+              <div className="relative mt-2">
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+                  <Input placeholder="Buscar en chats..." className="pl-10" />
+              </div>
+          </CardHeader>
+          <ScrollArea className="flex-grow">
+            <div className="p-2">
+              {conversations.map((conv) => {
+                const user = users.find((u) => u.id === conv.userId);
+                if (!user) return null;
 
-              return (
-                <div
-                  key={conv.userId}
-                  onClick={() => setSelectedConversation(conv)}
-                  className={`flex items-center gap-3 p-3 rounded-lg cursor-pointer transition-colors ${
-                    isActive ? 'bg-secondary' : 'hover:bg-muted'
-                  }`}
-                >
-                  <Avatar className="h-12 w-12">
-                    <AvatarImage src={user.avatarUrl} alt={user.name} />
-                    <AvatarFallback>{user.name.charAt(0)}</AvatarFallback>
-                  </Avatar>
-                  <div className="flex-grow overflow-hidden">
-                    <div className="flex justify-between items-center">
-                      <p className="font-semibold truncate">{user.name}</p>
-                      <p className="text-xs text-muted-foreground">10:31</p>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <p className="text-sm text-muted-foreground truncate">{conv.lastMessage}</p>
-                      {conv.unread > 0 && (
-                        <span className="flex h-5 w-5 items-center justify-center rounded-full bg-primary text-xs text-primary-foreground">
-                          {conv.unread}
-                        </span>
-                      )}
+                return (
+                  <div
+                    key={conv.userId}
+                    onClick={() => setSelectedConversation(conv)}
+                    className={`flex items-center gap-3 p-3 rounded-lg cursor-pointer transition-colors hover:bg-muted`}
+                  >
+                    <Avatar className="h-12 w-12">
+                      <AvatarImage src={user.avatarUrl} alt={user.name} />
+                      <AvatarFallback>{user.name.charAt(0)}</AvatarFallback>
+                    </Avatar>
+                    <div className="flex-grow overflow-hidden">
+                      <div className="flex justify-between items-center">
+                        <p className="font-semibold truncate">{user.name}</p>
+                        <p className="text-xs text-muted-foreground">10:31</p>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <p className="text-sm text-muted-foreground truncate">{conv.lastMessage}</p>
+                        {conv.unread > 0 && (
+                          <span className="flex h-5 w-5 items-center justify-center rounded-full bg-primary text-xs text-primary-foreground">
+                            {conv.unread}
+                          </span>
+                        )}
+                      </div>
                     </div>
                   </div>
-                </div>
-              );
-            })}
-          </div>
-        </ScrollArea>
-      </Card>
+                );
+              })}
+            </div>
+          </ScrollArea>
+        </Card>
+      </aside>
 
       {/* Panel de chat */}
-      <div className="flex-grow flex flex-col h-full bg-background">
+      <main
+        className={cn(
+          'absolute inset-0 md:static flex flex-col h-full bg-background transition-transform duration-300 ease-in-out',
+          selectedConversation ? 'translate-x-0' : 'translate-x-full md:translate-x-0'
+        )}
+      >
         {selectedConversation ? (
           <>
             {/* Header del chat */}
-            <header className="flex items-center gap-4 p-4 border-b">
+            <header className="flex items-center gap-4 p-2 md:p-4 border-b">
+              <Button variant="ghost" size="icon" className="md:hidden" onClick={() => setSelectedConversation(undefined as any)}>
+                <ArrowLeft />
+              </Button>
               <Avatar>
                 <AvatarImage src={users.find(u => u.id === selectedConversation.userId)?.avatarUrl} />
                 <AvatarFallback>{users.find(u => u.id === selectedConversation.userId)?.name.charAt(0)}</AvatarFallback>
@@ -108,7 +121,7 @@ export default function MessagesPage() {
             </header>
 
             {/* Mensajes */}
-            <ScrollArea className="flex-grow p-6">
+            <ScrollArea className="flex-grow p-4 md:p-6">
               <div className="space-y-6">
                 {selectedConversation.messages.map((msg, index) => {
                   const isCurrentUser = msg.sender === currentUser.id;
@@ -146,13 +159,13 @@ export default function MessagesPage() {
             </footer>
           </>
         ) : (
-          <div className="flex flex-col items-center justify-center h-full text-center">
+          <div className="hidden md:flex flex-col items-center justify-center h-full text-center">
             <MessageSquare className="h-24 w-24 text-muted-foreground/30" />
             <h2 className="mt-4 text-2xl font-semibold">Selecciona una conversación</h2>
             <p className="mt-2 text-muted-foreground">Elige a alguien de la lista para empezar a chatear.</p>
           </div>
         )}
-      </div>
+      </main>
     </div>
   );
 }

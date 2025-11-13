@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState } from 'react';
@@ -113,7 +114,7 @@ export function RoommateFinder() {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
       <div className="lg:col-span-1">
-        <Card className="rounded-2xl shadow-lg sticky top-24">
+        <Card className="rounded-2xl shadow-lg lg:sticky lg:top-24">
           <CardHeader>
             <CardTitle>Tu Perfil de Convivencia</CardTitle>
             <CardDescription>Rellena tus datos para encontrar matches.</CardDescription>
@@ -126,7 +127,7 @@ export function RoommateFinder() {
                   <FormField control={form.control} name="occupation" render={({ field }) => ( <FormItem><FormLabel>Ocupación</FormLabel><FormControl><Input {...field} /></FormControl><FormMessage /></FormItem>)} />
                 </div>
                 
-                <FormField control={form.control} name="budgetMin" render={({ field }) => ( <FormItem><FormLabel>Presupuesto</FormLabel><FormControl><div className="flex gap-2 items-center"><Input placeholder="Min" type="number" {...field} /><span className="text-muted-foreground">-</span><Input placeholder="Max" type="number" {...form.register('budgetMax')} /></div></FormControl><FormMessage /></FormItem>)} />
+                <FormField control={form.control} name="budgetMin" render={({ field }) => ( <FormItem><FormLabel>Presupuesto (€/mes)</FormLabel><FormControl><div className="flex gap-2 items-center"><Input placeholder="Min" type="number" {...field} /><span className="text-muted-foreground">-</span><Input placeholder="Max" type="number" {...form.register('budgetMax')} /></div></FormControl><FormMessage /></FormItem>)} />
 
                 <FormField control={form.control} name="cleanlinessPreference" render={({ field }) => (
                   <FormItem><FormLabel>Orden y limpieza</FormLabel>
@@ -157,9 +158,9 @@ export function RoommateFinder() {
                 
                 <FormField control={form.control} name="interests" render={({ field }) => ( <FormItem><FormLabel>Intereses</FormLabel><FormControl><Textarea placeholder="Ej: senderismo, cine, cocinar..." {...field} /></FormControl><FormDescription>Separa tus intereses con comas.</FormDescription><FormMessage /></FormItem>)} />
 
-                <div className="flex items-center space-x-2">
-                    <FormField control={form.control} name="petsPreference" render={({ field }) => (<FormItem className="flex flex-row items-start space-x-3 space-y-0"><FormControl><Checkbox checked={field.value} onCheckedChange={field.onChange} /></FormControl><FormLabel>Acepto mascotas</FormLabel></FormItem>)} />
-                    <FormField control={form.control} name="smokingPreference" render={({ field }) => (<FormItem className="flex flex-row items-start space-x-3 space-y-0"><FormControl><Checkbox checked={field.value} onCheckedChange={field.onChange} /></FormControl><FormLabel>Acepto fumadores</FormLabel></FormItem>)} />
+                <div className="grid grid-cols-2 gap-4">
+                    <FormField control={form.control} name="petsPreference" render={({ field }) => (<FormItem className="flex flex-row items-center space-x-3 space-y-0 rounded-md border p-3"><FormControl><Checkbox checked={field.value} onCheckedChange={field.onChange} /></FormControl><FormLabel>Acepto mascotas</FormLabel></FormItem>)} />
+                    <FormField control={form.control} name="smokingPreference" render={({ field }) => (<FormItem className="flex flex-row items-center space-x-3 space-y-0 rounded-md border p-3"><FormControl><Checkbox checked={field.value} onCheckedChange={field.onChange} /></FormControl><FormLabel>Acepto fumadores</FormLabel></FormItem>)} />
                 </div>
                 
                 <Button type="submit" disabled={isLoading} className="w-full text-lg h-12">
