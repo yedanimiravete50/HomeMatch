@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Sparkles, MessageSquare, Heart, X } from 'lucide-react';
+import { Sparkles, MessageSquare, Heart, X, Star } from 'lucide-react';
 import { Progress } from '@/components/ui/progress';
 
 interface ProfileCardProps {
@@ -12,6 +12,22 @@ interface ProfileCardProps {
   profile: RoommateProfile;
   matchInfo?: MatchResult;
 }
+
+function UserRating({ rating }: { rating: number }) {
+  return (
+    <div className="flex items-center gap-1">
+      {Array.from({ length: 5 }).map((_, i) => (
+        <Star
+          key={i}
+          className={`h-4 w-4 ${
+            i < Math.floor(rating) ? 'text-primary fill-primary' : 'text-muted-foreground/30'
+          }`}
+        />
+      ))}
+    </div>
+  );
+}
+
 
 export function ProfileCard({ user, profile, matchInfo }: ProfileCardProps) {
   return (
@@ -22,10 +38,14 @@ export function ProfileCard({ user, profile, matchInfo }: ProfileCardProps) {
           <AvatarFallback>{user.name.charAt(0)}</AvatarFallback>
         </Avatar>
         <div className="flex-1">
-          <CardTitle className="text-2xl font-bold flex items-center gap-2">
-            {user.name}, {profile.age}
-            {user.isVerified && <Sparkles className="w-5 h-5 text-primary" />}
-          </CardTitle>
+          <div className='flex justify-between items-start'>
+            <CardTitle className="text-2xl font-bold flex items-center gap-2">
+              {user.name}, {profile.age}
+              {user.isVerified && <Sparkles className="w-5 h-5 text-primary" />}
+            </CardTitle>
+             <UserRating rating={4.5} />
+          </div>
+
           <CardDescription className="text-base">{profile.occupation}</CardDescription>
           <div className="flex flex-wrap gap-2 mt-2">
             {profile.interests.slice(0, 3).map(interest => (
@@ -54,4 +74,9 @@ export function ProfileCard({ user, profile, matchInfo }: ProfileCardProps) {
           <Heart className="h-5 w-5" />
         </Button>
         <Button variant="ghost" size="icon" className="h-11 w-11">
-          <X className="h-
+          <X className="h-6 w-6" />
+        </Button>
+      </CardFooter>
+    </Card>
+  );
+}

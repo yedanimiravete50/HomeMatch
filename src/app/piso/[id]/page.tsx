@@ -26,6 +26,7 @@ import {
   Flag,
   CalendarDays,
 } from 'lucide-react';
+import { ReviewCard } from '@/components/review-card';
 
 export default function PropertyDetailPage({ params }: { params: { id: string } }) {
   const property = properties.find((p) => p.id === params.id || p.id === params.id.replace('-clone', ''));
@@ -121,17 +122,7 @@ export default function PropertyDetailPage({ params }: { params: { id: string } 
             </h2>
             <div className="space-y-6">
               {reviews.map(review => (
-                <div key={review.id} className="flex gap-4">
-                  <Avatar>
-                    <AvatarImage src={review.author.avatarUrl} />
-                    <AvatarFallback>{review.author.name.charAt(0)}</AvatarFallback>
-                  </Avatar>
-                  <div>
-                    <p className="font-semibold">{review.author.name}</p>
-                    <p className="text-sm text-muted-foreground">{review.date}</p>
-                    <p className="mt-2">{review.comment}</p>
-                  </div>
-                </div>
+                <ReviewCard key={review.id} review={review} />
               ))}
             </div>
           </div>

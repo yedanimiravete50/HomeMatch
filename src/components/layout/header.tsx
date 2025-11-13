@@ -9,7 +9,7 @@ import { SidebarTrigger } from '../ui/sidebar';
 export function Header() {
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-30 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-14 max-w-screen-2xl items-center">
         <div className='md:hidden'>
             <SidebarTrigger />
@@ -22,12 +22,6 @@ export function Header() {
             <Link href="/auth/signup">
               <Button>Crear perfil</Button>
             </Link>
-          </div>
-          <div className='hidden md:block'>
-            <LanguageSwitcher />
-          </div>
-           <div className='hidden md:block'>
-            <ThemeToggle />
           </div>
         </div>
       </div>
