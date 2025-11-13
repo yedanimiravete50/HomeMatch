@@ -42,9 +42,9 @@ export function Testimonials() {
           {testimonials.map((testimonial) => {
             const avatarImage = PlaceHolderImages.find(img => img.id === testimonial.avatarId);
             return (
-              <Card key={testimonial.name} className="flex flex-col justify-between p-6 rounded-2xl shadow-lg">
+              <Card key={testimonial.name} className="flex flex-col justify-between p-6 rounded-2xl shadow-lg bg-card">
                 <CardContent className="p-0">
-                  <p className="text-lg">"{testimonial.text}"</p>
+                  <p className="text-lg text-card-foreground">"{testimonial.text}"</p>
                 </CardContent>
                 <div className="flex items-center gap-4 mt-6">
                   <Avatar>
@@ -52,7 +52,7 @@ export function Testimonials() {
                     <AvatarFallback>{testimonial.name.charAt(0)}</AvatarFallback>
                   </Avatar>
                   <div>
-                    <p className="font-semibold">{testimonial.name}</p>
+                    <p className="font-semibold text-card-foreground">{testimonial.name}</p>
                   </div>
                 </div>
               </Card>
@@ -65,7 +65,7 @@ export function Testimonials() {
             {universityLogos.map(logo => {
               const logoImage = PlaceHolderImages.find(img => img.id === logo.id);
               return logoImage ? (
-                <Image key={logo.id} src={logoImage.imageUrl} alt={logo.name} width={120} height={40} className="object-contain" data-ai-hint={logoImage.imageHint} />
+                <Image key={logo.id} src={logoImage.imageUrl} alt={logo.name} width={120} height={40} className="object-contain opacity-70" data-ai-hint={logoImage.imageHint} />
               ) : null;
             })}
           </div>
