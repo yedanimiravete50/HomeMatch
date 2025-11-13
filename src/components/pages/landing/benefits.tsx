@@ -68,3 +68,5 @@ export function Benefits() {
         </div>
       </div>
     </section>
+  );
+}

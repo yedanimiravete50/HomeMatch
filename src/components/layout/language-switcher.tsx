@@ -37,4 +37,10 @@ export function LanguageSwitcher() {
         <DropdownMenuItem onClick={() => setLanguage('EN')}>
           <div className="flex items-center justify-between w-full">
             <span>English</span>
-            {currentLang === 'EN' && <Check className="h-4 w-4 ml-2
+            {currentLang === 'EN' && <Check className="h-4 w-4 ml-2" />}
+          </div>
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+}
