@@ -32,10 +32,10 @@ export function AppSidebar() {
   return (
     <Sidebar>
       <SidebarHeader>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center justify-center group-data-[collapsible=icon]:justify-center">
             <Link href="/" className="flex items-center gap-2 group/logo" aria-label='Home page'>
-                <Image src="/logo.png" alt="HomeMatch Hub Logo" width={32} height={32} />
-                <span className="text-lg font-bold text-foreground group-data-[collapsible=icon]:hidden">
+                <Image src="/logo.png" alt="HomeMatch Hub Logo" width={40} height={40} />
+                <span className="text-lg font-bold text-sidebar-foreground group-data-[collapsible=icon]:hidden">
                     HomeMatch
                 </span>
             </Link>
@@ -65,6 +65,9 @@ export function AppSidebar() {
         <Link href="/auth/signup" className='w-full group-data-[collapsible=icon]:w-auto'>
             <Button className='w-full' >Crear perfil</Button>
         </Link>
+        <div className="hidden group-data-[collapsible=icon]:block">
+          <SidebarTrigger />
+        </div>
       </SidebarFooter>
     </Sidebar>
   );
