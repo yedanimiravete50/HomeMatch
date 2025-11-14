@@ -54,9 +54,13 @@ export function AppSidebar() {
             <Image
               src="/logo.png"
               alt="HomeMatch Hub Logo"
-              width={40}
-              height={40}
+              width={32}
+              height={32}
+              className="transition-all duration-300 group-data-[collapsible=icon]:w-8 group-data-[collapsible=icon]:h-8"
             />
+            <span className="text-lg font-bold text-sidebar-foreground group-data-[collapsible=icon]:hidden">
+              HomeMatch
+            </span>
           </Link>
         </div>
       </SidebarHeader>
