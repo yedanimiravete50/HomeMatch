@@ -1,4 +1,4 @@
-import { users, reviews, properties } from '@/lib/data';
+import { users, reviews, properties, events } from '@/lib/data';
 import { notFound } from 'next/navigation';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
@@ -7,6 +7,7 @@ import { Star, Building, MessageSquare, UserCheck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ReviewCard } from '@/components/review-card';
 import { PropertyCard } from '@/components/property-card';
+import { EventCard } from '@/components/event-card';
 import { Separator } from '@/components/ui/separator';
 
 function UserRating({ rating, reviewCount }: { rating: number, reviewCount: number }) {
@@ -38,6 +39,7 @@ export default function UserProfilePage({ params }: { params: { id: string } }) 
 
   const userReviews = reviews.filter(r => r.reviewFor.type === 'user' && r.reviewFor.id === user.id);
   const userProperties = properties.filter(p => p.landlordId === user.id);
+  const userEvents = events.filter(e => e.hostedBy.id === user.id);
   
   const totalRating = userReviews.reduce((sum, review) => sum + review.rating, 0);
   const averageRating = userReviews.length > 0 ? totalRating / userReviews.length : 0;
@@ -104,6 +106,20 @@ export default function UserProfilePage({ params }: { params: { id: string } }) 
               )}
             </CardContent>
           </Card>
+
+          {/* Hosted Events Section */}
+          {userEvents.length > 0 && (
+            <Card className="rounded-2xl">
+              <CardHeader>
+                <CardTitle>Eventos Organizados ({userEvents.length})</CardTitle>
+              </CardHeader>
+              <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {userEvents.map((event) => (
+                  <EventCard key={event.id} event={event} />
+                ))}
+              </CardContent>
+            </Card>
+          )}
 
           {/* Properties Section (for landlords) */}
           {user.role === 'landlord' && userProperties.length > 0 && (
