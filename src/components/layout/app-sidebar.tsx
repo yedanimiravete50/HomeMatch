@@ -45,13 +45,13 @@ export function AppSidebar() {
   return (
     <Sidebar collapsible="icon">
       <SidebarHeader>
-        <div className="flex items-center justify-center group-data-[collapsible=icon]:justify-center">
+        <div className="flex items-center gap-2 p-2 group-data-[collapsible=icon]:justify-center">
             <Image
               src="/logo.png"
               alt="HomeMatch Hub Logo"
               width={32}
               height={32}
-              className="transition-all duration-300 group-data-[collapsible=icon]:w-8 group-data-[collapsible=icon]:h-8"
+              className="transition-all duration-300"
             />
         </div>
       </SidebarHeader>
