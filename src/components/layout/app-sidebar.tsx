@@ -46,11 +46,6 @@ export function AppSidebar() {
     <Sidebar collapsible="icon">
       <SidebarHeader>
         <div className="flex items-center justify-center group-data-[collapsible=icon]:justify-center">
-          <Link
-            href="/"
-            className="flex items-center gap-2 group/logo"
-            aria-label="Home page"
-          >
             <Image
               src="/logo.png"
               alt="HomeMatch Hub Logo"
@@ -58,7 +53,6 @@ export function AppSidebar() {
               height={32}
               className="transition-all duration-300 group-data-[collapsible=icon]:w-8 group-data-[collapsible=icon]:h-8"
             />
-          </Link>
         </div>
       </SidebarHeader>
       <SidebarContent>
