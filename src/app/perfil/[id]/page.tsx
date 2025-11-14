@@ -125,7 +125,7 @@ export default function UserProfilePage({ params }: { params: { id: string } }) 
           {user.role === 'landlord' && userProperties.length > 0 && (
             <Card className="rounded-2xl">
               <CardHeader>
-                <CardTitle>Propiedades de {user.name.split(' ')[0]} ({userProperties.length})</CardTitle>
+                <CardTitle>Propiedades de {user.name.split('_')[0]} ({userProperties.length})</CardTitle>
               </CardHeader>
               <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {userProperties.map((prop) => (

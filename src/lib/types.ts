@@ -41,6 +41,7 @@ export type Property = {
   bedrooms: number;
   bathrooms: number;
   squareMeters: number;
+  room_sqm?: number;
   photos: string[];
   amenities: string[];
   rules: string[];
