@@ -47,7 +47,7 @@ export function AppSidebar() {
       <SidebarHeader>
         <div className="flex items-center justify-center group-data-[collapsible=icon]:justify-center">
             <Image
-              src="/public/logo.png"
+              src="/logo.png"
               alt="HomeMatch Hub Logo"
               width={32}
               height={32}
