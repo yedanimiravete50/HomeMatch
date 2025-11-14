@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import type { Property } from '@/lib/types';
-import { MapPin, BedDouble, Bath, Star, Users } from 'lucide-react';
+import { MapPin, BedDouble, Bath, Star, Ruler } from 'lucide-react';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 interface PropertyCardProps {
@@ -54,6 +54,10 @@ export function PropertyCard({ property }: PropertyCardProps) {
                 <div className="flex items-center gap-1">
                     <Bath className="h-4 w-4" />
                     <span>{property.bathrooms}</span>
+                </div>
+                <div className="flex items-center gap-1">
+                    <Ruler className="h-4 w-4" />
+                    <span>{property.squareMeters}m²</span>
                 </div>
             </div>
             <div className="flex items-center gap-1 font-semibold text-foreground">

@@ -25,6 +25,7 @@ import {
   Share2,
   Flag,
   CalendarDays,
+  Ruler,
 } from 'lucide-react';
 import { ReviewCard } from '@/components/review-card';
 
@@ -83,8 +84,9 @@ export default function PropertyDetailPage({ params }: { params: { id: string } 
           
           {/* Property Details */}
           <div className="flex items-center gap-8 text-lg">
-            <div className="flex items-center gap-2"><BedDouble className="h-6 w-6 text-primary" /> {property.bedrooms} habitaciones</div>
+            <div className="flex items-center gap-2"><BedDouble className="h-6 w-6 text-primary" /> {property.bedrooms} habs</div>
             <div className="flex items-center gap-2"><Bath className="h-6 w-6 text-primary" /> {property.bathrooms} baños</div>
+            <div className="flex items-center gap-2"><Ruler className="h-6 w-6 text-primary" /> {property.squareMeters}m² (piso)</div>
             {property.expensesIncluded && <div className="flex items-center gap-2"><CheckCircle className="h-6 w-6 text-green-500" /> Gastos incluidos</div>}
           </div>
 

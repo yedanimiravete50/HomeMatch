@@ -40,6 +40,7 @@ export type Property = {
   expensesIncluded: boolean;
   bedrooms: number;
   bathrooms: number;
+  squareMeters: number;
   photos: string[];
   amenities: string[];
   rules: string[];
