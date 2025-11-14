@@ -28,10 +28,14 @@ import {
   Ruler,
 } from 'lucide-react';
 import { ReviewCard } from '@/components/review-card';
+import { EventCard } from '@/components/event-card';
+import { events } from '@/lib/data';
 
 export default function PropertyDetailPage({ params }: { params: { id: string } }) {
   const property = properties.find((p) => p.id === params.id || p.id === params.id.replace('-clone', ''));
   const landlord = users.find((u) => u.id === property?.landlordId);
+  const propertyReviews = reviews.slice(0, 2);
+  const communityEvents = events.slice(0, 2);
 
   if (!property || !landlord) {
     return (
@@ -123,11 +127,24 @@ export default function PropertyDetailPage({ params }: { params: { id: string } 
               {property.rating} ({property.reviewsCount} reseñas)
             </h2>
             <div className="space-y-6">
-              {reviews.map(review => (
+              {propertyReviews.map(review => (
                 <ReviewCard key={review.id} review={review} />
               ))}
             </div>
           </div>
+
+          <Separator />
+
+          {/* Events */}
+          <div>
+            <h2 className="text-2xl font-bold font-headline mb-4">Eventos de la comunidad</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {communityEvents.map(event => (
+                  <EventCard key={event.id} event={event} />
+              ))}
+            </div>
+          </div>
+
         </div>
 
         {/* Sidebar */}

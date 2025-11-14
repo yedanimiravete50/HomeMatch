@@ -1,5 +1,4 @@
 import { Review } from '@/lib/types';
-import { Card, CardContent } from './ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 import { Star } from 'lucide-react';
 
@@ -9,8 +8,7 @@ interface ReviewCardProps {
 
 export function ReviewCard({ review }: ReviewCardProps) {
   return (
-    <Card className="p-4 shadow-sm">
-      <div className="flex gap-4">
+    <div className="flex gap-4">
         <Avatar>
           <AvatarImage src={review.author.avatarUrl} />
           <AvatarFallback>{review.author.name.charAt(0)}</AvatarFallback>
@@ -34,7 +32,6 @@ export function ReviewCard({ review }: ReviewCardProps) {
           </div>
           <p className="mt-2 text-muted-foreground">{review.comment}</p>
         </div>
-      </div>
-    </Card>
+    </div>
   );
 }
