@@ -56,6 +56,10 @@ export type Review = {
   rating: number;
   comment: string;
   date: string;
+  reviewFor: {
+    type: 'property' | 'user';
+    id: string;
+  };
 };
 
 export type HomeMatchEvent = {

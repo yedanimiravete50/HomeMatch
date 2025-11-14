@@ -1,5 +1,6 @@
 import { properties, users, reviews } from '@/lib/data';
 import Image from 'next/image';
+import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -34,7 +35,7 @@ import { events } from '@/lib/data';
 export default function PropertyDetailPage({ params }: { params: { id: string } }) {
   const property = properties.find((p) => p.id === params.id || p.id === params.id.replace('-clone', ''));
   const landlord = users.find((u) => u.id === property?.landlordId);
-  const propertyReviews = reviews.slice(0, 2);
+  const propertyReviews = reviews.filter(r => r.reviewFor.type === 'property' && r.reviewFor.id === property?.id).slice(0, 2);
   const communityEvents = events.slice(0, 2);
 
   if (!property || !landlord) {
@@ -172,7 +173,9 @@ export default function PropertyDetailPage({ params }: { params: { id: string } 
                   <AvatarFallback>{landlord.name.charAt(0)}</AvatarFallback>
                 </Avatar>
                 <div>
-                  <p className="font-bold text-lg">{landlord.name}</p>
+                  <Link href={`/perfil/${landlord.id}`} className="hover:underline">
+                    <p className="font-bold text-lg">{landlord.name}</p>
+                  </Link>
                   <p className="text-muted-foreground">Se unió en 2023</p>
                   {landlord.isVerified && <Badge className="mt-1">Verificado</Badge>}
                 </div>

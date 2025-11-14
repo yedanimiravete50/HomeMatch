@@ -112,8 +112,11 @@ export const properties: Property[] = [
 ];
 
 export const reviews: Review[] = [
-    { id: 'rev-1', author: users[1], rating: 5, comment: '¡El piso es genial y Javier es un anfitrión increíble! Muy recomendable.', date: 'hace 2 semanas' },
-    { id: 'rev-2', author: users[3], rating: 4, comment: 'Una estancia muy agradable. La ubicación es perfecta.', date: 'hace 1 mes' },
+    { id: 'rev-1', author: users[1], rating: 5, comment: '¡El piso es genial y Javier es un anfitrión increíble! Muy recomendable.', date: 'hace 2 semanas', reviewFor: { type: 'property', id: 'prop-1' } },
+    { id: 'rev-2', author: users[3], rating: 4, comment: 'Una estancia muy agradable. La ubicación es perfecta.', date: 'hace 1 mes', reviewFor: { type: 'property', id: 'prop-2' } },
+    { id: 'rev-3', author: users[0], rating: 5, comment: 'Javier ha sido el mejor propietario que he tenido. Siempre atento y dispuesto a ayudar en todo. ¡Un 10!', date: 'hace 3 semanas', reviewFor: { type: 'user', id: 'user-3' } },
+    { id: 'rev-4', author: users[1], rating: 5, comment: 'Elena es una compañera de piso fantástica. Muy limpia, respetuosa y siempre con una sonrisa.', date: 'hace 1 mes', reviewFor: { type: 'user', id: 'user-1' } },
+    { id: 'rev-5', author: users[4], rating: 4, comment: 'Javier fue muy rápido solucionando un problema con la calefacción. Se agradece su eficiencia.', date: 'hace 2 meses', reviewFor: { type: 'user', id: 'user-3' } },
 ];
 
 export const events: HomeMatchEvent[] = [
