@@ -71,7 +71,7 @@ export default function DashboardPage() {
       <header className="mb-8 rounded-2xl bg-gradient-to-r from-primary/80 to-primary p-8 text-primary-foreground shadow-lg">
         <h1 className="text-4xl font-bold">¡Hola, {loggedInUser.name}!</h1>
         <p className="mt-2 text-lg text-primary-foreground/90">
-          Bienvenido de nuevo a tu centro de control en HomeMatch.
+          Explora tu match de convivencia y administra tus propiedades.
         </p>
       </header>
 
