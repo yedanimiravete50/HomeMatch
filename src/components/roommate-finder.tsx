@@ -128,6 +128,11 @@ export function RoommateFinder() {
                 </div>
                 
                 <FormField control={form.control} name="budgetMin" render={({ field }) => ( <FormItem><FormLabel>Presupuesto (€/mes)</FormLabel><FormControl><div className="flex gap-2 items-center"><Input placeholder="Min" type="number" {...field} /><span className="text-muted-foreground">-</span><Input placeholder="Max" type="number" {...form.register('budgetMax')} /></div></FormControl><FormMessage /></FormItem>)} />
+                
+                <div className="grid grid-cols-2 gap-4">
+                  <FormField control={form.control} name="arrivalDate" render={({ field }) => ( <FormItem><FormLabel>Llegada</FormLabel><FormControl><Input type="date" {...field} /></FormControl><FormMessage /></FormItem>)} />
+                  <FormField control={form.control} name="departureDate" render={({ field }) => ( <FormItem><FormLabel>Salida</FormLabel><FormControl><Input type="date" {...field} /></FormControl><FormMessage /></FormItem>)} />
+                </div>
 
                 <FormField control={form.control} name="cleanlinessPreference" render={({ field }) => (
                   <FormItem><FormLabel>Orden y limpieza</FormLabel>
