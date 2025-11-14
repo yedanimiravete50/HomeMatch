@@ -43,9 +43,9 @@ export default function ExplorePage() {
   return (
     <div className="container py-10">
       <header className="mb-8">
-        <h1 className="text-4xl font-bold font-headline">Explorar Viviendas</h1>
+        <h1 className="text-4xl font-bold font-headline">Explorar</h1>
         <p className="text-lg text-muted-foreground mt-2">
-          Encuentra el lugar perfecto para tu aventura en España.
+          Encuentra tu perfecto match.
         </p>
       </header>
 

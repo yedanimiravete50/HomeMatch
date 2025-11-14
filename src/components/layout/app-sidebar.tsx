@@ -23,6 +23,7 @@ import {
   MessageSquare,
   Settings,
   LogOut,
+  Search,
 } from 'lucide-react';
 import { Button } from '../ui/button';
 import { ThemeToggle } from './theme-toggle';
@@ -36,7 +37,7 @@ export function AppSidebar() {
 
   const navLinks = [
     { href: '/', label: 'Inicio', icon: <Home /> },
-    { href: '/explorar', label: 'Propiedades', icon: <Building2 /> },
+    { href: '/explorar', label: 'Explorar', icon: <Search /> },
     { href: '/eventos', label: 'Experiencias', icon: <PartyPopper /> },
     { href: '/perfiles', label: 'Perfiles', icon: <Users /> },
     { href: '/mensajes', label: 'Chats', icon: <MessageSquare /> },
