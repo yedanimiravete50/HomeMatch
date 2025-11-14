@@ -61,11 +61,9 @@ function UserRating({ rating }: { rating: number }) {
 export default function DashboardPage() {
   const loggedInUser = users[0];
   const userRating = 4.5;
-  const recentActivities = [
-    { type: 'review', data: reviews[0] },
-    { type: 'event', data: events[0] },
-    { type: 'review', data: reviews[1] },
-  ];
+  const recentReviews = reviews.slice(0, 2);
+  const upcomingEvents = events.slice(0, 2);
+
 
   return (
     <div className="container mx-auto py-8">
@@ -111,31 +109,36 @@ export default function DashboardPage() {
             </Card>
           </div>
 
-          {/* Unified Feed */}
+          {/* Recent Reviews */}
           <Card>
             <CardHeader>
-              <CardTitle>Actividad Reciente</CardTitle>
+              <CardTitle>Últimas Reseñas</CardTitle>
               <CardDescription>
-                Últimas reseñas, eventos y noticias de tu comunidad.
+                Mira lo que otros dicen sobre la comunidad.
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
-              {recentActivities.map((activity, index) => {
-                if (activity.type === 'review') {
-                  return <ReviewCard key={index} review={activity.data} />;
-                }
-                if (activity.type === 'event') {
-                  return (
-                    <div key={index} className="p-4 border rounded-xl">
-                      <h4 className='font-semibold mb-2 text-sm text-muted-foreground'>Nuevo Evento Cerca</h4>
-                      <EventCard event={activity.data} />
-                    </div>
-                  )
-                }
-                return null;
-              })}
+              {recentReviews.map((review, index) => (
+                  <ReviewCard key={index} review={review} />
+              ))}
             </CardContent>
           </Card>
+
+            {/* Upcoming Events */}
+            <Card>
+                <CardHeader>
+                <CardTitle>Eventos Cercanos</CardTitle>
+                <CardDescription>
+                    Conecta con la comunidad y haz nuevos amigos.
+                </CardDescription>
+                </CardHeader>
+                <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {upcomingEvents.map((event, index) => (
+                    <EventCard key={index} event={event} />
+                ))}
+                </CardContent>
+            </Card>
+
         </div>
 
         {/* Right Sidebar */}
